@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Scoreboard from "./Scoreboard";
 import PowerButtons from "./PowerButtons";
+import Cards from "./Cards";
 
 function App() {
   const [gameState, setGameState] = useState(true);
@@ -11,7 +12,7 @@ function App() {
   useEffect(() => {
     if (gameState === false && score > highScore) {
       setHighScore(score);
-    }}, [gameState]);
+    }}, [gameState, highScore, score]);
 
   // Function handles adding +1 to the score
   const handleScoreIncrement = () => {
@@ -28,15 +29,18 @@ function App() {
     setScore(0)
     setHighScore(0)
   }
+  const toggleGameOn = () => {
+    setGameState(true)
+  }
+
 
   return (
     <div className="game-board">
       <Scoreboard score={score} highScore={highScore} />
-      <div>
-        GAME BOARD GOES HERE
-      </div>
+      <Cards/>
       <button onClick={handleScoreIncrement}>Simulate 1 Point</button>
       <PowerButtons resetBtn={resetGame} powerOffBtn={powerOffButton}/>
+      <button onClick={toggleGameOn}>State On</button>
     </div>
   );
 }
