@@ -1,30 +1,39 @@
-import { useState } from "react"
-import Scoreboard from "./Scoreboard"
+import { useEffect, useState } from "react";
+import Scoreboard from "./Scoreboard";
+import PowerButtons from "./PowerButtons";
 
 function App() {
-
-  const [gameState, setGameState] = useState(false)
-  const [score, setScore] = useState(0)
-  const [highScore, setHighScore] = useState(0)
-
+  const [gameState, setGameState] = useState(false);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const handleScoreIncrement = () => {
-    setScore((prevScore) => prevScore + 1)
-  }
+    setScore((prevScore) => prevScore + 1);
+  };
 
-  function saveHighScore(){
-    if(gameState === false) {
-      setHighScore(score)
+  useEffect(() => {
+    if (gameState === false && score > highScore) {
+      setHighScore(score);
     }
+  }, [gameState]);
+
+  const powerOffButton = () => {
+    setGameState(false)
+  }
+  const powerOnButton = () => {
+    setGameState(true)
   }
 
   return (
     <div className="game-board">
       <Scoreboard score={score} highScore={highScore} />
+      <div>
+        GAME BOARD GOES HERE
+      </div>
       <button onClick={handleScoreIncrement}>+</button>
-      <button onClick={saveHighScore}>End Game</button>
+      <PowerButtons on={powerOnButton} off={powerOffButton}/>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
