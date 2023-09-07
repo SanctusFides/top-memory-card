@@ -1,10 +1,10 @@
-export default function PowerButtons({on, off}) {
+export default function PowerButtons({resetBtn, powerOffBtn}) {
 
 
   return (
-    <>
-      <button onClick={on}>Start Game</button>
-      <button onClick={off}>End Game</button>
-    </>
+    <div className="power-btns">
+      <button onClick={resetBtn}>Restart Game</button>
+      <button onClick={powerOffBtn}>End Game</button>
+    </div>
   );
 }
