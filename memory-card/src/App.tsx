@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Scoreboard from "./Scoreboard";
 import PowerButtons from "./PowerButtons";
 import Cards from "./Cards";
@@ -6,15 +6,18 @@ import Cards from "./Cards";
 function App() {
   const [gameState, setGameState] = useState(true);
   const [score, setScore] = useState(0);
-  const highScore = useRef(0);
+
+  // I THINK THAT THE USEREF MAY BE THE WRONG CALL AFTER ALL HERE. WITHOUT IT, THE PAGE UPDATES A STEP BEHIND
+  // const highScore = useRef(0);
+
+  const [highScore, setHighScore] = useState(0)
 
   // This checks when the game session ends (either by win or loss) and if the current score is higher than highest, set that
   useEffect(() => {
-    if (gameState === false && score > highScore.current) {
-      console.log("WE IN HERE");
-      
-      highScore.current = score.valueOf();
-    }}, [gameState, score]);
+    if (gameState === false && score > highScore) {
+      setHighScore(score);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }}, [gameState,score]);
 
   // Function handles adding +1 to the score
   const handleScoreIncrement = () => {    
@@ -29,7 +32,7 @@ function App() {
   const resetGame = () => {
     setGameState(true)
     setScore(0)
-    highScore.current = 0 
+    setHighScore(0) 
   }
   const toggleGameOn = () => {
     setGameState(true)
