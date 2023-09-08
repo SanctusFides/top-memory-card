@@ -1,13 +1,8 @@
-
-export default function Scoreboard({score, highScore}) {
-
+export default function Scoreboard({ score, highScore }) {
   return (
     <div className="score-board">
-      <p>Score: {score}</p>
-      <p>
-      High Score: {highScore}
-
-      </p>
+      <p aria-label="current score">Score: {score}</p>
+      <p aria-label="high score">High Score: {highScore}</p>
     </div>
-  )
+  );
 }
