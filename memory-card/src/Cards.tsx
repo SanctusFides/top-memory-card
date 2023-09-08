@@ -1,6 +1,6 @@
 import Card from "./Card";
 
-export default function Cards() {
+export default function Cards({endGameFunc, handleScoreIncrement}) {
   // This function handles randomizing the order of a list
   function shuffle(array) {
     let currentIndex = array.length,
@@ -26,11 +26,15 @@ export default function Cards() {
   }
   const shuffledList = shuffle(builtList);
 
-  // This is the click handler for the card to change it's consumed state from false to true
-  function changeCardState(card) {
-    if (card.consumed === true) {
-      console.log("Card has already been clicked");
+  // This is the click handler for the card to change its consumed state from false to true
+  const selectCard = (card) => {
+    console.log(card.consumed)
+    
+    if (card.consumed == true) {
+      endGameFunc();
     } else {
+      console.log("!");
+      handleScoreIncrement();
       card.setConsumed();
     }
   }
@@ -38,8 +42,8 @@ export default function Cards() {
   return (
     <>
       <ul className="cards">
-        {shuffledList.map((card) => (
-          <button className="card" key={card.icon} onClick={() => changeCardState(card)}>{card.icon}</button>
+        {shuffledList.map((card, index) => (
+          <button className="card" key={index} onClick={() => selectCard(card)}>{card.icon}</button>
         ))}
       </ul>
     </>

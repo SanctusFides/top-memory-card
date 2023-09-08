@@ -1,18 +1,14 @@
-// import React from 'react'
-
+// Cards have just an string for icon to store emoji and boolean to check if it's been selected by the player
 export default class Card {
-  id: number
   icon: string
   consumed: boolean
+
   constructor(icon) {
-    this.id = Math.random();
     this.icon = icon;
     this.consumed = false;
   }
 
   setConsumed() {
     this.consumed = true;
-    console.log(`this cards status is ${this.consumed}`);
-    
   }
 }
