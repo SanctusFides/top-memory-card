@@ -15,8 +15,10 @@ function App() {
   // This checks when the game session ends (either by win or loss) and if the current score is higher than highest, set that
   useEffect(() => {
     if (gameState === false && score > highScore) {
-      setHighScore(score);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      setHighScore(score)
+    } else if (score >= 6) {
+      setHighScore(score)
+      alert("You win! Click restart to try again!")
     }}, [gameState,score]);
 
   // Function handles adding +1 to the score
@@ -34,18 +36,13 @@ function App() {
     setScore(0)
     setHighScore(0) 
   }
-  const toggleGameOn = () => {
-    setGameState(true)
-  }
 
   
   return (
-    <div className="game-board" style={{backgroundColor: gameState ? 'green' : 'red'}}>
+    <div className="game-board" style={{backgroundColor: gameState ? "white ": "red"}}>
       <Scoreboard score={score} highScore={highScore} />
       <Cards endGameFunc={powerOffButton} handleScoreIncrement={handleScoreIncrement}/>
-      <button onClick={handleScoreIncrement}>Simulate 1 Point</button>
-      <PowerButtons resetBtn={resetGame} powerOffBtn={powerOffButton}/>
-      <button onClick={toggleGameOn}>State On</button>
+      <PowerButtons resetBtn={resetGame} />
     </div>
   );
 }

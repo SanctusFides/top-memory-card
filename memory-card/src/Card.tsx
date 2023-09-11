@@ -9,6 +9,6 @@ export default class Card {
   }
 
   setConsumed() {
-    this.consumed = true;
+    this.consumed = true;    
   }
 }
