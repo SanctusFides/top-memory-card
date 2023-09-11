@@ -34,7 +34,6 @@ function App() {
   const resetGame = () => {
     setGameState(true)
     setScore(0)
-    setHighScore(0) 
   }
 
   
