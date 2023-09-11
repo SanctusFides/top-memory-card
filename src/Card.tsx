@@ -12,10 +12,9 @@ export default class Card {
 
   setConsumed() {
     console.log(this.id);
-    
-    console.log(this.consumed);
+    // console.log(this.consumed);
     this.consumed = true;    
-    console.log(this.consumed);
+    // console.log(this.consumed);
 
   }
 }

@@ -12,18 +12,17 @@ function App() {
   // This checks when the game session ends (either by win or loss) and if the current score is higher than highest, set that
   useEffect(() => {
     if (gameState === false && score > highScore) {
-      setHighScore(score);
+      setHighScore(score)
     } else if (score >= 6) {
-      setHighScore(score);
-      alert("You win! Click restart to try again!");
-    }
-  }, [gameState, score]);
+      setHighScore(score)
+      alert("You win! Click restart to try again!")
+    }}, [gameState,score]);
 
 
   // Function handles adding +1 to the score
-  const handleScoreIncrement = () => {
-    setScore((prevScore) => prevScore + 1);
-  };
+  const handleScoreIncrement = () =>{
+    setScore((prevScore) => prevScore + 1)
+  }
 
   // Sets the game state to false
   const GameStateOff = () => {
@@ -62,7 +61,12 @@ function App() {
     }
     return newCardList
   }
+
+  const gameHand = makeCards()
+  const shuffledCards = shuffle(gameHand)
+
   function selectCard(card: Card) {
+    console.log("pew!");
     if (card.consumed == true) {
       GameStateOff();
     } else {
@@ -70,9 +74,6 @@ function App() {
       card.setConsumed();
     }
   }
-
-  const shuffledCards = shuffle(makeCards())
-
   return (
     <div
       className="game-board"
@@ -83,7 +84,7 @@ function App() {
       <PowerButtons resetBtn={resetGame} />
       <button onClick={gameStateOn}>State On</button>
       <button onClick={GameStateOff}>State Off</button>
-      <button onClick={() => console.log()}>List</button>
+      <button onClick={() => console.log(shuffledCards)}>List</button>
       <button onClick={makeCards}>new hand</button>
     </div>
   );
