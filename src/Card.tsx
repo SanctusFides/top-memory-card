@@ -2,13 +2,20 @@
 export default class Card {
   icon: string
   consumed: boolean
+  id: number
 
   constructor(icon) {
     this.icon = icon;
     this.consumed = false;
+    this.id = Math.random();
   }
 
   setConsumed() {
+    console.log(this.id);
+    
+    console.log(this.consumed);
     this.consumed = true;    
+    console.log(this.consumed);
+
   }
 }
