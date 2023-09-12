@@ -11,8 +11,6 @@ export default class Card {
   }
 
   setConsumed() {
-    console.log(this.id);
     this.consumed = true;    
-
   }
 }
