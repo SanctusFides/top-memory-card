@@ -4,7 +4,7 @@ export default function Cards({
   list,
   selectCard
 }) {
-
+  
   return (
     <>
       <ul className="cards">
